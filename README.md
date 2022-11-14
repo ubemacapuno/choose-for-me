@@ -1,38 +1,24 @@
-# create-svelte
+## Choose For Me
+Are you indecisive on something? Add in some options and Choose For Me will randomly choose something for you! Check out the <a target="_blank" href="https://choose-for-me-svelte.netlify.app/">DEMO</a> on Netlify!
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## How It's Made:
 
-## Creating a project
+**Tech used:** 
 
-If you're seeing this, you've probably already done this step. Congrats!
+SvelteKit, Tailwind CSS + DaisyUI, HTML/CSS/JavaScript
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Using NPM:
 
 ```bash
-npm run dev
+# Install Dependencies
+$ npm install
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# Start Application in Development
+$ npm run dev
 ```
 
-## Building
+## Lessons Learned:
+Better knowledge of Svelte/SvelteKit and Tailwind/DaisyUI.
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Optimizations:
+I would like to incorporate Mongo Atlas and an authenticator (or use Supabase) to allow users to save their options and choices.
