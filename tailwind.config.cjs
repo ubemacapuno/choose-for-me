@@ -1,13 +1,5 @@
-const config = {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
-
-	theme: {
-		extend: {}
-	},
-
-	plugins: [
-		require("daisyui")
-	],
-};
-
-module.exports = config;
+module.exports = {
+	content: ['./src/routes/**/*.{svelte,js,ts}'],
+	plugins: [require('daisyui')],
+  };
+  
