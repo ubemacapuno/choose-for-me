@@ -23,8 +23,8 @@
 </script>
 
 <svelte:head>
-	<title>Option Helper</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Choose For Me</title>
+	<meta name="Are you indecisive on something? Add in some options and the app will randomly choose something!" content="SvelteKit app" />
 </svelte:head>
 
 <section class="flex items-center flex-col my-10">
