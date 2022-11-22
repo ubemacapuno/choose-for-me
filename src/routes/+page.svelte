@@ -1,6 +1,4 @@
 <script>
-	import { fly } from 'svelte/transition';
-
 	let answer = ''
 	let newItem = '';
 	let answerVisibility = false
@@ -40,12 +38,10 @@
 		<div class="card-body">
 			<label class="px-7 text-xl my-10 text-primary">Add Some Choices:
 				<br />
+
+				<!-- bind newItem to the text inputted by the user: -->
 				<input class="input input-bordered input-success text-white w-full max-w-xs px-2 my-1" bind:value={newItem} type="text">
 			</label>
-
-			{#if answerVisibility === true && choicesList.length > 0}
-				<h2 class="pb-7 text-xl text-fuchsia-300 text-center">We've chosen <span class="font-bold text-error">{answer}</span>!</h2>
-			{/if}
 
 			<div class="flex justify-center">
 				<button class="mx-2 w-28 btn-primary btn p-3 my-2 order-2" on:click={addToList}>Add</button>
@@ -53,7 +49,6 @@
 					<button class="mx-2 w-28 btn btn-accent my-2 order-3" on:click={choose}>
 						Choose!
 					</button>
-					<!-- <label for="my-modal-4" class="w-28 btn btn-accent my-2">Random</label> -->
 					<button class="mx-2 w-28 btn btn-warning my-2 order-1" on:click={clearList}>
 						Clear
 					</button>
@@ -61,6 +56,10 @@
 			</div>
 		</div>
 	</div>
+
+	{#if answerVisibility === true && choicesList.length > 0}
+		<h2 class="pt-7 text-xl text-fuchsia-300 text-center">We've chosen <span class="font-bold text-error">{answer}</span>!</h2>
+	{/if}
 
 	<div class="py-7">
 		{#each choicesList as item, index}
