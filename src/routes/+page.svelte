@@ -1,5 +1,9 @@
 <script>
+	import { fly } from 'svelte/transition';
+
+	let answer = ''
 	let newItem = '';
+	let answerVisibility = false
 	let choicesList = [];
 	let randomChoice = () => Math.floor(Math.random()*(choicesList.length))
 
@@ -14,11 +18,14 @@
     }
 	
 	function choose(){
-		alert(choicesList[randomChoice()].option)
+		answer = (choicesList[randomChoice()].option)
+		answerVisibility = true
 	}
 
 	function clearList(){
 		choicesList = []
+		answer = ''
+		answerVisibility = false
 	}
 </script>
 
@@ -28,13 +35,18 @@
 </svelte:head>
 
 <section class="flex items-center flex-col my-10">
-	
+
 	<div class="card w-96 bg-secondary text-primary-content">
 		<div class="card-body">
 			<label class="px-7 text-xl my-10 text-primary">Add Some Choices:
 				<br />
 				<input class="input input-bordered input-success text-white w-full max-w-xs px-2 my-1" bind:value={newItem} type="text">
 			</label>
+
+			{#if answerVisibility === true && choicesList.length > 0}
+				<h2 class="pb-7 text-xl text-fuchsia-300 text-center">We've chosen <span class="font-bold text-error">{answer}</span>!</h2>
+			{/if}
+
 			<div class="flex justify-center">
 				<button class="mx-2 w-28 btn-primary btn p-3 my-2 order-2" on:click={addToList}>Add</button>
 				{#if choicesList.length > 1}
@@ -49,7 +61,6 @@
 			</div>
 		</div>
 	</div>
-	
 
 	<div class="py-7">
 		{#each choicesList as item, index}
@@ -58,14 +69,4 @@
 			</p>
 		{/each} 
 	</div>
-
-<!-- Put this part before </body> tag -->
-<!-- <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-<label for="my-modal-4" class="modal cursor-pointer">
-  <label class="modal-box relative" for="">
-    <h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
-    <p class="py-4">What?!?!</p>
-  </label>
-</label> -->
-
 </section>
