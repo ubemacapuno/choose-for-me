@@ -1,4 +1,5 @@
 <script>
+	import { fly } from 'svelte/transition';
 	let answer = ''
 	let newItem = '';
 	let answerVisibility = false
@@ -6,13 +7,18 @@
 	let randomChoice = () => Math.floor(Math.random()*(choicesList.length))
 
 	function addToList() {
-		choicesList = [...choicesList, {option: newItem}];
-		newItem = '';
+		if (newItem.trim() !== ""){
+			choicesList = [...choicesList, {option: newItem}];
+			newItem = '';
+		}else{
+			alert("OOPS! Choice submission must not be BLANK!")
+		}
 	}
 	
 	function removeFromList(index) {
 		choicesList.splice(index, 1)
 		choicesList = choicesList;
+		answerVisibility = false;
     }
 	
 	function choose(){
@@ -33,6 +39,9 @@
 </svelte:head>
 
 <section class="flex items-center flex-col my-10">
+	{#if answerVisibility === true && choicesList.length > 0}
+		<h2 transition:fly="{{ y: 200, duration: 500 }}" class="py-4 text-xl text-fuchsia-300 text-center">We've chosen <span class="font-bold text-error">{answer}</span>!</h2>
+	{/if}
 
 	<div class="card w-96 bg-secondary text-primary-content">
 		<div class="card-body">
@@ -45,6 +54,7 @@
 
 			<div class="flex justify-center">
 				<button class="mx-2 w-28 btn-primary btn p-3 my-2 order-2" on:click={addToList}>Add</button>
+
 				{#if choicesList.length > 1}
 					<button class="mx-2 w-28 btn btn-accent my-2 order-3" on:click={choose}>
 						Choose!
@@ -53,14 +63,10 @@
 						Clear
 					</button>
 				{/if}
+
 			</div>
 		</div>
 	</div>
-
-	{#if answerVisibility === true && choicesList.length > 0}
-		<h2 class="pt-7 text-xl text-fuchsia-300 text-center">We've chosen <span class="font-bold text-error">{answer}</span>!</h2>
-	{/if}
-
 	<div class="py-7">
 		{#each choicesList as item, index}
 			<p class="py-2">{item.option}
